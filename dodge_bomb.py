@@ -6,6 +6,8 @@ import pygame as pg
 WIDTH, HEIGHT = 1600, 900
 
 
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -18,6 +20,10 @@ def main():
     x = random.randint(0,WIDTH)
     y = random.randint(0,HEIGHT)
     clock = pg.time.Clock()
+            #爆弾Surfaceから爆弾Rectを抽出する
+    bd_rct = bd_img.get_rect() 
+    bd_rct.center = x,y #爆弾Rectの中心座標を乱数で指定する
+    vx, vy = +5,+5
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -25,10 +31,9 @@ def main():
                 return
 
         screen.blit(bg_img, [0, 0])
-        screen.blit(kk_img, [900, 400])
-        bd_img_rct = bd_img.get_rect()
-        bd_img_rct.center = x,y
-        screen.blit(bd_img, bd_img_rct)
+        screen.blit(kk_img,[900,400] )
+        screen.blit(bd_img, bd_rct)
+        bd_rct.move_ip(vx,vy)
         pg.display.update()
         tmr += 1
         clock.tick(50)
