@@ -48,9 +48,7 @@ def  roto(sum):
         (-5,-5):img3,
         (-5,0):img1,
         (5,0):img6
-
-
-    }
+}
     return imgs[tuple(sum)]
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
